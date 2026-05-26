@@ -9,7 +9,7 @@ export default function Hero() {
       <div className="absolute right-0 top-20 h-80 w-80 rounded-full bg-red-200 blur-3xl" />
       <div className="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-zinc-300 blur-3xl" />
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-20 lg:grid-cols-2">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-5 lg:grid-cols-2">
         <div>
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-red-200 bg-white px-4 py-2 text-sm font-medium text-red-700 shadow-sm">
             <ShieldCheck size={17} />
