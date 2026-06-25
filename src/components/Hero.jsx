@@ -1,77 +1,149 @@
+"use client";
+
+import { useState } from "react";
 import { ArrowRight, ShieldCheck } from "lucide-react";
+import Reveal from "./Reveal";
+import CountUp from "./CountUp";
+import PremiumButton from "./PremiumButton";
 
 export default function Hero() {
+  const [move, setMove] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e) => {
+    const x = e.clientX / window.innerWidth - 0.5;
+    const y = e.clientY / window.innerHeight - 0.5;
+
+    setMove({ x, y });
+  };
+
+  const softMove = {
+    transform: `translate(${move.x * 10}px, ${move.y * 10}px)`,
+  };
+
+  const mediumMove = {
+    transform: `translate(${move.x * -16}px, ${move.y * -16}px)`,
+  };
+
+  const strongMove = {
+    transform: `translate(${move.x * 22}px, ${move.y * 22}px)`,
+  };
+
   return (
     <section
       id="anasayfa"
-      className="relative min-h-screen overflow-hidden bg-gradient-to-br from-white via-zinc-100 to-red-50 pt-32"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => setMove({ x: 0, y: 0 })}
+      className="relative min-h-screen scroll-mt-0 overflow-hidden bg-[#F8F6F1] pt-15"
     >
-      <div className="absolute right-0 top-20 h-80 w-80 rounded-full bg-red-200 blur-3xl" />
-      <div className="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-zinc-300 blur-3xl" />
+      <div
+        className="absolute inset-0 bg-[linear-gradient(to_right,rgba(27,27,27,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(27,27,27,0.045)_1px,transparent_1px)] bg-[size:72px_72px] transition-transform duration-500 ease-out"
+        style={softMove}
+      />
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 py-5 lg:grid-cols-2">
-        <div>
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-red-200 bg-white px-4 py-2 text-sm font-medium text-red-700 shadow-sm">
-            <ShieldCheck size={17} />
-            Güvenilir Hukuki Danışmanlık
-          </div>
+      <div
+        className="absolute -right-24 top-24 h-72 w-72 rounded-full bg-[#C6A15B]/10 blur-3xl transition-transform duration-700 ease-out"
+        style={mediumMove}
+      />
 
-          <h1 className="max-w-3xl text-4xl font-bold leading-tight text-zinc-950 md:text-6xl">
-            Haklarınızı güçlü, hızlı ve şeffaf şekilde savunuyoruz.
-          </h1>
+      <div
+        className="absolute -left-24 bottom-10 h-80 w-80 rounded-full bg-[#1B1B1B]/5 blur-3xl transition-transform duration-700 ease-out"
+        style={strongMove}
+      />
 
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-600">
-            Kırmızı Hukuk & Danışmanlık, bireysel ve kurumsal müvekkillerine
-            dava takibi, sözleşme yönetimi, icra hukuku, aile hukuku ve ticaret
-            hukuku alanlarında profesyonel destek sunar.
-          </p>
-
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-            <a
-              href="#iletisim"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-red-700 px-7 py-4 font-semibold text-white shadow-lg shadow-red-200 transition hover:bg-red-800"
+      <div className="relative mx-auto grid min-h-[calc(100vh-6rem)] max-w-7xl items-center gap-12 px-5 py-14 lg:grid-cols-[1.1fr_0.9fr]">
+        <Reveal type="left">
+          <div>
+            <div
+              className="mb-8 flex items-center gap-4 text-[#C6A15B] transition-transform duration-500 ease-out"
+              style={mediumMove}
             >
-              Bilgi Almak İstiyorum
-              <ArrowRight size={19} />
-            </a>
+              <span className="h-px w-12 bg-[#C6A15B]" />
 
-            <a
-              href="#alanlar"
-              className="inline-flex items-center justify-center rounded-full border border-red-300 bg-white px-7 py-4 font-semibold text-red-700 transition hover:bg-red-50"
-            >
-              Çalışma Alanları
-            </a>
-          </div>
-        </div>
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.28em]">
+                <ShieldCheck size={16} strokeWidth={1.6} />
+                Güvenilir Hukuki Danışmanlık
+              </div>
+            </div>
 
-        <div className="rounded-[2rem] border border-zinc-200 bg-white p-5 shadow-2xl shadow-zinc-300/50">
-          <div className="rounded-[1.5rem] bg-gradient-to-br from-red-700 to-red-950 p-8 text-white">
-            <p className="text-sm uppercase tracking-[0.4em] text-red-100">
-              Hukuk Bürosu
+            <h1 className="font-title max-w-4xl text-5xl font-semibold leading-[1.05] tracking-tight text-[#1B1B1B] md:text-7xl">
+              Haklarınızı güçlü, hızlı ve şeffaf şekilde savunuyoruz.
+            </h1>
+
+            <p className="mt-8 max-w-2xl text-base leading-8 text-[#555] md:text-lg">
+              Kırmızı Hukuk & Danışmanlık, bireysel ve kurumsal müvekkillerine
+              dava takibi, sözleşme yönetimi, icra hukuku, aile hukuku ve
+              ticaret hukuku alanlarında profesyonel destek sunar.
             </p>
 
-            <h2 className="mt-8 text-4xl font-bold">
-              Adalet için stratejik yaklaşım
-            </h2>
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <PremiumButton href="#iletisim" variant="dark">
+                Bilgi Almak İstiyorum
+                <ArrowRight size={18} />
+              </PremiumButton>
 
-            <p className="mt-5 leading-7 text-red-100">
-              Her dosya özelinde detaylı analiz, güncel mevzuat takibi ve sonuç
-              odaklı hukuki çözüm süreci.
-            </p>
+              <PremiumButton href="#alanlar" variant="outline">
+                Çalışma Alanları
+              </PremiumButton>
+            </div>
+          </div>
+        </Reveal>
 
-            <div className="mt-10 grid grid-cols-2 gap-4">
-              <div className="rounded-2xl bg-white/15 p-5 backdrop-blur">
-                <h3 className="text-3xl font-bold">10+</h3>
-                <p className="text-sm text-red-100">Çalışma Alanı</p>
+        <Reveal type="right" delay={0.2}>
+          <div
+            className="relative transition-transform duration-500 ease-out"
+            style={mediumMove}
+          >
+            <div
+              className="absolute -right-8 -top-8 h-full w-full border border-[#C6A15B]/25 transition-transform duration-700 ease-out max-md:hidden"
+              style={strongMove}
+            />
+
+            <div className="relative bg-[#1B1B1B] px-8 py-10 md:px-10 md:py-12">
+              <p className="text-xs font-semibold uppercase tracking-[0.45em] text-[#C6A15B]">
+                Hukuk Bürosu
+              </p>
+
+              <h2 className="font-title mt-8 text-4xl font-semibold leading-tight text-[#F8F8F8] md:text-5xl">
+                Adalet için stratejik yaklaşım
+              </h2>
+
+              <p className="mt-6 leading-8 text-[#B5B5B5]">
+                Her dosya özelinde detaylı analiz, güncel mevzuat takibi ve
+                sonuç odaklı hukuki çözüm süreci.
+              </p>
+
+              <div className="mt-12 grid grid-cols-2 border-y border-[#C6A15B]/25">
+                <div className="border-r border-[#C6A15B]/25 py-7 pr-6">
+                  <h3 className="font-title text-5xl font-semibold text-[#F8F8F8]">
+                    <CountUp end={10} suffix="+" />
+                  </h3>
+
+                  <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[#B5B5B5]">
+                    Çalışma Alanı
+                  </p>
+                </div>
+
+                <div className="py-7 pl-6">
+                  <h3 className="font-title text-5xl font-semibold text-[#F8F8F8]">
+                    7/24
+                  </h3>
+
+                  <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[#B5B5B5]">
+                    Ön Başvuru
+                  </p>
+                </div>
               </div>
 
-              <div className="rounded-2xl bg-white/15 p-5 backdrop-blur">
-                <h3 className="text-3xl font-bold">7/24</h3>
-                <p className="text-sm text-red-100">Ön Başvuru</p>
+              <div className="mt-10 flex items-center gap-4">
+                <span className="h-px w-20 bg-[#C6A15B]" />
+
+                <span className="text-xs uppercase tracking-[0.25em] text-[#C6A15B]">
+                  Güven • Strateji • Şeffaflık
+                </span>
               </div>
             </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

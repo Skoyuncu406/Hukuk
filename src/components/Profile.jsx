@@ -1,106 +1,131 @@
 import Image from "next/image";
 import { Award, BriefcaseBusiness, GraduationCap } from "lucide-react";
+import Reveal from "./Reveal";
+import CountUp from "./CountUp";
+import PremiumButton from "./PremiumButton";
 
 export default function Profile() {
+  const stats = [
+    {
+      icon: Award,
+      type: "count",
+      end: 10,
+      suffix: "+",
+      label: "Yıllık Hukuk Deneyimi",
+    },
+    {
+      icon: BriefcaseBusiness,
+      type: "count",
+      end: 500,
+      suffix: "+",
+      label: "Başarılı Dosya Yönetimi",
+    },
+    {
+      icon: GraduationCap,
+      type: "text",
+      value: "Uzmanlık",
+      label: "Ticaret ve Aile Hukuku",
+    },
+  ];
+
   return (
-    <section  id="kurucu" className="relative overflow-hidden bg-white px-5 py-24">
-      <div className="absolute right-0 top-0 h-72 w-72 rounded-full bg-red-100 blur-3xl" />
-      <div className="absolute bottom-0 left-0 h-72 w-72 rounded-full bg-zinc-200 blur-3xl" />
+    <section
+      id="kurucu"
+      className="relative overflow-hidden bg-[#FAF8F3] px-5 py-10"
+    >
+      <div className="absolute inset-x-0 top-0 h-px bg-[#C6A15B]/25" />
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2">
-        {/* FOTOĞRAF */}
-        <div className="relative flex justify-center">
-          <div className="relative overflow-hidden rounded-[2rem] border border-zinc-200 bg-white p-3 shadow-2xl shadow-zinc-300/50">
-            <div className="absolute left-0 top-0 h-full w-full bg-gradient-to-br from-red-100/40 to-transparent" />
+      <div className="relative mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-[0.9fr_1.1fr]">
+        <Reveal type="left">
+          <div className="relative">
+            <div className="absolute -left-5 -top-5 h-full w-full border border-[#C6A15B]/30" />
 
-            <Image
-              src="/lawyer.jpg"
-              alt="Avukat Profil"
-              width={550}
-              height={700}
-              className="relative h-[600px] w-full rounded-[1.5rem] object-cover"
-              priority
-            />
-          </div>
-        </div>
-
-        {/* İÇERİK */}
-        <div>
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-red-700">
-            Kurucu Avukat
-          </p>
-
-          <h2 className="text-4xl font-bold leading-tight text-zinc-950 md:text-5xl">
-            Güçlü hukuki temsil, şeffaf süreç yönetimi ve profesyonel danışmanlık.
-          </h2>
-
-          <p className="mt-8 text-lg leading-8 text-zinc-600">
-            Av. Ahmet Yılmaz, bireysel ve kurumsal müvekkillerine ticaret
-            hukuku, aile hukuku, icra hukuku ve sözleşmeler hukuku alanlarında
-            profesyonel danışmanlık sunmaktadır.
-          </p>
-
-          <p className="mt-5 text-lg leading-8 text-zinc-600">
-            Her dosyayı özel olarak analiz ederek stratejik çözümler üretmeyi
-            hedefleyen yaklaşımı sayesinde müvekkillerine güvenilir ve etkili
-            hukuki destek sağlamaktadır.
-          </p>
-
-          {/* BİLGİ KARTLARI */}
-          <div className="mt-10 grid gap-5 sm:grid-cols-3">
-            <div className="rounded-3xl border border-zinc-200 bg-zinc-50 p-5 shadow-lg shadow-zinc-200/50">
-              <Award className="mb-4 text-red-700" size={32} />
-
-              <h3 className="text-2xl font-bold text-zinc-950">10+</h3>
-
-              <p className="mt-2 text-sm leading-6 text-zinc-600">
-                Yıllık Hukuk Deneyimi
-              </p>
-            </div>
-
-            <div className="rounded-3xl border border-zinc-200 bg-zinc-50 p-5 shadow-lg shadow-zinc-200/50">
-              <BriefcaseBusiness
-                className="mb-4 text-red-700"
-                size={32}
+            <div className="relative overflow-hidden bg-[#1B1B1B] p-3">
+              <Image
+                src="/lawyer.jpg"
+                alt="Avukat Profil"
+                width={550}
+                height={700}
+                className="h-[560px] w-full object-cover grayscale-[15%]"
+                priority
               />
+            </div>
+          </div>
+        </Reveal>
 
-              <h3 className="text-2xl font-bold text-zinc-950">500+</h3>
-
-              <p className="mt-2 text-sm leading-6 text-zinc-600">
-                Başarılı Dosya Yönetimi
+        <Reveal type="right" delay={0.15}>
+          <div>
+            <div className="mb-6 flex items-center gap-4 text-[#C6A15B]">
+              <span className="h-px w-12 bg-[#C6A15B]" />
+              <p className="text-xs font-semibold uppercase tracking-[0.32em]">
+                Kurucu Avukat
               </p>
             </div>
 
-            <div className="rounded-3xl border border-zinc-200 bg-zinc-50 p-5 shadow-lg shadow-zinc-200/50">
-              <GraduationCap className="mb-4 text-red-700" size={32} />
+            <h2 className="font-title max-w-4xl text-4xl font-semibold leading-tight text-[#1B1B1B] md:text-6xl">
+              Güçlü hukuki temsil, şeffaf süreç yönetimi ve profesyonel danışmanlık.
+            </h2>
 
-              <h3 className="text-2xl font-bold text-zinc-950">
-                Uzmanlık
-              </h3>
+            <div className="mt-8 max-w-3xl space-y-5 text-base leading-8 text-[#555] md:text-lg">
+              <p>
+                Av. Ahmet Yılmaz, bireysel ve kurumsal müvekkillerine ticaret
+                hukuku, aile hukuku, icra hukuku ve sözleşmeler hukuku alanlarında
+                profesyonel danışmanlık sunmaktadır.
+              </p>
 
-              <p className="mt-2 text-sm leading-6 text-zinc-600">
-                Ticaret ve Aile Hukuku
+              <p>
+                Her dosyayı özel olarak analiz ederek stratejik çözümler üretmeyi
+                hedefleyen yaklaşımı sayesinde müvekkillerine güvenilir ve etkili
+                hukuki destek sağlamaktadır.
               </p>
             </div>
-          </div>
 
-          {/* BUTONLAR */}
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <a
-              href="#iletisim"
-              className="inline-flex items-center justify-center rounded-full bg-red-700 px-7 py-4 font-semibold text-white transition hover:bg-red-800"
-            >
-              İletişime Geç
-            </a>
+            <div className="mt-12 grid border-y border-[#C6A15B]/30 sm:grid-cols-3">
+              {stats.map((item, index) => {
+                const Icon = item.icon;
 
-            <a
-              href="#makaleler"
-              className="inline-flex items-center justify-center rounded-full border border-red-300 bg-white px-7 py-4 font-semibold text-red-700 transition hover:bg-red-50"
-            >
-              Makaleleri İncele
-            </a>
+                return (
+                  <div
+                    key={item.label}
+                    className={`py-7 ${
+                      index !== 2 ? "sm:border-r sm:border-[#C6A15B]/30" : ""
+                    } ${index !== 0 ? "sm:pl-7" : ""} ${
+                      index !== 2 ? "sm:pr-7" : ""
+                    }`}
+                  >
+                    <Icon
+                      className="mb-5 text-[#C6A15B]"
+                      size={28}
+                      strokeWidth={1.6}
+                    />
+
+                    <h3 className="font-title text-3xl font-semibold text-[#1B1B1B]">
+                      {item.type === "count" ? (
+                        <CountUp end={item.end} suffix={item.suffix} />
+                      ) : (
+                        item.value
+                      )}
+                    </h3>
+
+                    <p className="mt-2 text-sm leading-6 text-[#666]">
+                      {item.label}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <PremiumButton href="#iletisim" variant="dark">
+                İletişime Geç
+              </PremiumButton>
+
+              <PremiumButton href="#makaleler" variant="outline">
+                Makaleleri İncele
+              </PremiumButton>
+            </div>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
