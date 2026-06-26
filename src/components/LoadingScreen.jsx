@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Scale } from "lucide-react";
+import LoadingBar from "./LoadingBar";
 
 export default function LoadingScreen({ onFinish }) {
   const [show, setShow] = useState(true);
@@ -19,8 +20,10 @@ export default function LoadingScreen({ onFinish }) {
 
   return (
     <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-[#1B1B1B]">
+      <LoadingBar />
+
       <div className="text-center">
-        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center border border-[#C6A15B]/50 text-[#C6A15B]">
+        <div className="logo-spin mx-auto mb-6 flex h-16 w-16 items-center justify-center border border-[#C6A15B]/50 text-[#C6A15B]">
           <Scale size={34} strokeWidth={1.5} />
         </div>
 

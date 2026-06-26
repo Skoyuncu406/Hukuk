@@ -5,6 +5,8 @@ import { ArrowRight, ShieldCheck } from "lucide-react";
 import Reveal from "./Reveal";
 import CountUp from "./CountUp";
 import PremiumButton from "./PremiumButton";
+import SplitText from "./SplitText";
+import GoldParticles from "./GoldParticles";
 
 export default function Hero() {
   const [move, setMove] = useState({ x: 0, y: 0 });
@@ -50,6 +52,8 @@ export default function Hero() {
         style={strongMove}
       />
 
+      <GoldParticles />
+
       <div className="relative mx-auto grid min-h-[calc(100vh-6rem)] max-w-7xl items-center gap-12 px-5 py-14 lg:grid-cols-[1.1fr_0.9fr]">
         <Reveal type="left">
           <div>
@@ -66,7 +70,10 @@ export default function Hero() {
             </div>
 
             <h1 className="font-title max-w-4xl text-5xl font-semibold leading-[1.05] tracking-tight text-[#1B1B1B] md:text-7xl">
-              Haklarınızı güçlü, hızlı ve şeffaf şekilde savunuyoruz.
+              <SplitText
+                text="Haklarınızı güçlü, hızlı ve şeffaf şekilde savunuyoruz."
+                delay={0.15}
+              />
             </h1>
 
             <p className="mt-8 max-w-2xl text-base leading-8 text-[#555] md:text-lg">

@@ -88,3 +88,16 @@ section {
     transform: scaleX(1);
   }
 }
+@media (min-width: 1024px) {
+  body {
+    cursor: none;
+  }
+
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    cursor: none;
+  }
+}

@@ -3,6 +3,7 @@ import { Award, BriefcaseBusiness, GraduationCap } from "lucide-react";
 import Reveal from "./Reveal";
 import CountUp from "./CountUp";
 import PremiumButton from "./PremiumButton";
+import AnimatedDivider from "./AnimatedDivider";
 
 export default function Profile() {
   const stats = [
@@ -33,20 +34,26 @@ export default function Profile() {
       id="kurucu"
       className="relative overflow-hidden bg-[#FAF8F3] px-5 py-10"
     >
-      <div className="absolute inset-x-0 top-0 h-px bg-[#C6A15B]/25" />
+      <AnimatedDivider />
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-[0.9fr_1.1fr]">
         <Reveal type="left">
-          <div className="relative">
-            <div className="absolute -left-5 -top-5 h-full w-full border border-[#C6A15B]/30" />
+          <div className="group relative">
+            <div className="absolute -left-5 -top-5 h-full w-full border border-[#C6A15B]/30 transition-all duration-500 group-hover:-left-7 group-hover:-top-7 group-hover:border-[#C6A15B]/60" />
 
             <div className="relative overflow-hidden bg-[#1B1B1B] p-3">
+              <span className="pointer-events-none absolute inset-3 z-10 border border-[#C6A15B]/10 transition-all duration-500 group-hover:border-[#C6A15B]/35" />
+
+              <span className="pointer-events-none absolute -left-[80%] top-0 z-20 h-full w-1/2 rotate-[18deg] bg-white/20 blur-xl transition-all duration-1000 group-hover:left-[130%]" />
+
+              <span className="pointer-events-none absolute inset-3 z-10 bg-gradient-to-t from-[#1B1B1B]/45 via-transparent to-transparent opacity-70 transition-opacity duration-500 group-hover:opacity-40" />
+
               <Image
                 src="/lawyer.jpg"
                 alt="Avukat Profil"
                 width={550}
                 height={700}
-                className="h-[560px] w-full object-cover grayscale-[15%]"
+                className="h-[560px] w-full object-cover grayscale-[18%] transition-all duration-700 group-hover:scale-[1.045] group-hover:grayscale-0"
                 priority
               />
             </div>
